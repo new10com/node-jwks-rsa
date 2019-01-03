@@ -1,6 +1,6 @@
 import ms from 'ms';
 import debug from 'debug';
-import memoizer from 'lru-memoizer';
+import memoizer from '@new10com/lru-memoizer';
 
 export default function(client, { cacheMaxEntries = 5, cacheMaxAge = ms('10h') } = options) {
   const logger = debug('jwks');
