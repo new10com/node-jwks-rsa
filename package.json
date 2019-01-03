@@ -5,9 +5,9 @@
   "main": "lib/index.js",
   "types": "index.d.ts",
   "dependencies": {
+    "@new10com/lru-memoizer": "^1.13.4",
     "debug": "^2.2.0",
     "limiter": "^1.1.0",
-    "lru-memoizer": "^1.6.0",
     "ms": "^2.0.0",
     "request": "^2.73.0"
   },
