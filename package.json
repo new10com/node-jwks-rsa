@@ -1,9 +1,10 @@
 {
-  "name": "jwks-rsa",
+  "name": "@new10com/jwks-rsa",
   "version": "1.3.0",
   "description": "Library to retrieve RSA public keys from a JWKS endpoint",
   "main": "lib/index.js",
   "types": "index.d.ts",
+  "private": false,
   "dependencies": {
     "@new10com/lru-memoizer": "^1.13.4",
     "debug": "^2.2.0",
@@ -40,7 +41,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/auth0/node-jwks-rsa.git"
+    "url": "git+https://github.com/new10com/node-jwks-rsa.git"
   },
   "keywords": [
     "jwks",
@@ -50,7 +51,7 @@
   "author": "Auth0",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/auth0/node-jwks-rsa/issues"
+    "url": "https://github.com/new10com/node-jwks-rsa/issues"
   },
-  "homepage": "https://github.com/auth0/node-jwks-rsa#readme"
+  "homepage": "https://github.com/new10com/node-jwks-rsa#readme"
 }
