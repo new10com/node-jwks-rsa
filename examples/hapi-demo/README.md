@@ -1,11 +1,11 @@
-# jwks-rsa - Hapi Example
+# @new10com/jwks-rsa - Hapi Example
 
-The `jwks-rsa` library provides a small helper that makes it easy to configure `hapi-auth-jwt2` with the `RS256` algorithm. Using `hapiJwt2Key` you can generate a key provider that will provide the right signing key to `hapi-auth-jwt2` based on the `kid` in the JWT header.
+The `@new10com/jwks-rsa` library provides a small helper that makes it easy to configure `hapi-auth-jwt2` with the `RS256` algorithm. Using `hapiJwt2Key` you can generate a key provider that will provide the right signing key to `hapi-auth-jwt2` based on the `kid` in the JWT header.
 
 ```js
 const Hapi = require('hapi');
 const jwt = require('hapi-auth-jwt2');
-const jwksRsa = require('jwks-rsa');
+const jwksRsa = require('@new10com/jwks-rsa');
 
 ...
 
@@ -111,7 +111,7 @@ got(options)
 A few things will happen now:
 
  1. `hapi-auth-jwt2` will decode the token and pass the request and the decoded token to `jwksRsa.hapiJwt2Key`
- 2. `jwks-rsa` will then download all signing keys from the JWKS endpoint and see if a one of the signing keys matches the `kid` in the header of the JWT.
+ 2. `@new10com/jwks-rsa` will then download all signing keys from the JWKS endpoint and see if a one of the signing keys matches the `kid` in the header of the JWT.
    a. If none of the signing keys match the incoming `kid`, an error will be thrown
    b. If we have a match, we will pass the right signing key to `hapi-auth-jwt2`
  3. `hapi-auth-jwt2` will the continue its own logic to validate the signature of the token, the expiration, audience, issuer, ...

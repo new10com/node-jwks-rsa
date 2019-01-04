@@ -1,12 +1,12 @@
-# jwks-rsa - Koa Example
+# @new10com/jwks-rsa - Koa Example
 
-The `jwks-rsa` library provides a small helper that makes it easy to configure `koa-jwt` with the `RS256` algorithm. Using `koaJwtSecret` you can generate a key provider that will provide the right signing key to `koa-jwt` based on the `kid` in the JWT header.
+The `@new10com/jwks-rsa` library provides a small helper that makes it easy to configure `koa-jwt` with the `RS256` algorithm. Using `koaJwtSecret` you can generate a key provider that will provide the right signing key to `koa-jwt` based on the `kid` in the JWT header.
 
 ```js
 const Koa = require('koa');
 const Router = require('koa-router');
 const jwt = require('koa-jwt');
-const jwksRsa = require('jwks-rsa');
+const jwksRsa = require('@new10com/jwks-rsa');
 
 ...
 
@@ -89,7 +89,7 @@ got(options)
 A few things will happen now:
 
  1. `koa-jwt` will decode the token and pass the request and the decoded token to `jwksRsa.koaJwtSecret`
- 2. `jwks-rsa` will then download all signing keys from the JWKS endpoint and see if a one of the signing keys matches the `kid` in the header of the JWT.
+ 2. `@new10com/jwks-rsa` will then download all signing keys from the JWKS endpoint and see if a one of the signing keys matches the `kid` in the header of the JWT.
    a. If none of the signing keys match the incoming `kid`, an error will be thrown
    b. If we have a match, we will pass the right signing key to `koa-jwt`, otherwise throw
  3. `koa-jwt` will the continue its own logic to validate the signature of the token, the expiration, audience, issuer, ...

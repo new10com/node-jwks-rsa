@@ -1,15 +1,15 @@
-# jwks-rsa
+# @new10com/jwks-rsa
 
 A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 
-> npm install --save jwks-rsa
+> npm install --save @new10com/jwks-rsa
 
 ## Usage
 
 You'll provide the client with the JWKS endpoint which exposes your signing keys. Using the `getSigningKey` you can then get the signing key that matches a specific `kid`.
 
 ```js
-const jwksClient = require('jwks-rsa');
+const jwksClient = require('@new10com/jwks-rsa');
 
 const client = jwksClient({
   jwksUri: 'https://sandrino.auth0.com/.well-known/jwks.json',
@@ -37,7 +37,7 @@ Integrations are also provided with:
 In order to prevent a call to be made each time a signing key needs to be retrieved you can also configure a cache as follows. If a signing key matching the `kid` is found, this will be cached and the next time this `kid` is requested the signing key will be served from the cache instead of calling back to the JWKS endpoint.
 
 ```js
-const jwksClient = require('jwks-rsa');
+const jwksClient = require('@new10com/jwks-rsa');
 
 const client = jwksClient({
   cache: true,
@@ -59,7 +59,7 @@ client.getSigningKey(kid, (err, key) => {
 Even if caching is enabled the library will call the JWKS endpoint if the `kid` is not available in the cache, because a key rotation could have taken place. To prevent attackers to send many random `kid`s you can also configure rate limiting. This will allow you to limit the number of calls that are made to the JWKS endpoint per minute (because it would be highly unlikely that signing keys are rotated multiple times per minute).
 
 ```js
-const jwksClient = require('jwks-rsa');
+const jwksClient = require('@new10com/jwks-rsa');
 
 const client = jwksClient({
   cache: true,
