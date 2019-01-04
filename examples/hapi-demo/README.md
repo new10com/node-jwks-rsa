@@ -91,7 +91,7 @@ Using this `kid` we will try to find the right signing key in the singing keys p
 You can then call the sample application like this:
 
 ```js
-var request = require("request");
+var got = require("got");
 
 var options = {
   method: 'GET',
@@ -99,11 +99,13 @@ var options = {
   headers: { authorization: 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI...' }
 };
 
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  console.log(body);
-});
+got(options)
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    throw err;
+  });
 ```
 
 A few things will happen now:

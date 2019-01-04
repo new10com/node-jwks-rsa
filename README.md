@@ -12,8 +12,10 @@ You'll provide the client with the JWKS endpoint which exposes your signing keys
 const jwksClient = require('jwks-rsa');
 
 const client = jwksClient({
-  strictSsl: true, // Default value
-  jwksUri: 'https://sandrino.auth0.com/.well-known/jwks.json'
+  jwksUri: 'https://sandrino.auth0.com/.well-known/jwks.json',
+  strictSsl: true, // default value
+  followRedirect: true, // default value, see https://github.com/sindresorhus/got/tree/v9.5.0#followredirect
+  retry: 0, // default value, see https://github.com/sindresorhus/got/tree/v9.5.0#retry
 });
 
 const kid = 'RkI5MjI5OUY5ODc1N0Q4QzM0OUYzNkVGMTJDOUEzQkFCOTU3NjE2Rg';

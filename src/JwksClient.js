@@ -1,7 +1,6 @@
 import debug from 'debug';
-import request from 'request';
+import got from 'got';
 
-import ArgumentError from './errors/ArgumentError';
 import JwksError from './errors/JwksError';
 import SigningKeyNotFoundError from './errors/SigningKeyNotFoundError';
 
@@ -10,7 +9,14 @@ import { cacheSigningKey, rateLimitSigningKey } from './wrappers';
 
 export class JwksClient {
   constructor(options) {
-    this.options = { rateLimit: false, cache: false, strictSsl: true, ...options };
+    this.options = {
+      rateLimit: false,
+      cache: false,
+      strictSsl: true,
+      followRedirect: true,
+      retry: 0,
+      ...options
+    };
     this.logger = debug('jwks');
 
     // Initialize wrappers.
@@ -24,18 +30,27 @@ export class JwksClient {
 
   getKeys(cb) {
     this.logger(`Fetching keys from '${this.options.jwksUri}'`);
-    request({ json: true, uri: this.options.jwksUri, strictSSL: this.options.strictSsl }, (err, res) => {
-      if (err || res.statusCode < 200 || res.statusCode >= 300) {
-        this.logger('Failure:', res && res.body || err);
-        if (res) {
-          return cb(new JwksError(res.body && (res.body.message || res.body) || res.statusMessage || `Http Error ${res.statusCode}`));
-        }
-        return cb(err);
-      }
 
-      this.logger('Keys:', res.body.keys);
-      return cb(null, res.body.keys);
-    });
+    got
+      .get(this.options.jwksUri, {
+        json: true,
+        rejectUnauthorized: this.options.strictSsl,
+        followRedirect: this.options.followRedirect,
+        retry: this.options.retry
+      })
+      .then(res => {
+        this.logger('Keys:', res.body.keys);
+        return cb(null, res.body.keys);
+      })
+      .catch(err => {
+        this.logger('Failure:', err);
+
+        if (err instanceof got.HTTPError) {
+          return cb(new JwksError(err.response.body && (err.response.body.message || err.response.body) || err.response.statusMessage || `Http Error ${err.response.statusCode}`));
+        }
+
+        return cb(err);
+      });
   }
 
   getSigningKeys(cb) {

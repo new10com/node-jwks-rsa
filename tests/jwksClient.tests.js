@@ -28,6 +28,24 @@ describe('JwksClient', () => {
       });
     });
 
+    it('should retry in case of errors', (done) => {
+      nock(jwksHost)
+        .get('/.well-known/jwks.json')
+        .twice()
+        .reply(500, 'Unknown Server Error');
+
+      const client = new JwksClient({
+        jwksUri: `${jwksHost}/.well-known/jwks.json`,
+        retry: 1,
+      });
+
+      client.getKeys((err) => {
+        expect(err).not.to.be.null;
+        expect(err.message).to.equal('Unknown Server Error');
+        done();
+      });
+    });
+
     it('should return keys', (done) => {
       nock(jwksHost)
         .get('/.well-known/jwks.json')
