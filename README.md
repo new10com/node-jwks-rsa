@@ -1,8 +1,19 @@
 # @new10com/jwks-rsa
 
+[![NPM version][npm-image]][npm-url]
+[![Release][release-image]][release-url]
+[![Install Size][install-size-image]][install-size-url]
+
+[npm-image]: https://img.shields.io/npm/v/@new10com/jwks-rsa.svg
+[npm-url]: https://www.npmjs.org/package/@new10com/jwks-rsa
+[release-image]: https://img.shields.io/github/release/new10com/node-jwks-rsa.svg
+[release-url]: https://github.com/new10com/node-jwks-rsa/releases/latest
+[install-size-image]: https://packagephobia.now.sh/badge?p=@new10com/jwks-rsa
+[install-size-url]: https://packagephobia.now.sh/result?p=@new10com/jwks-rsa
+
 A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
 
-> npm install --save @new10com/jwks-rsa
+> npm install @new10com/jwks-rsa
 
 ## Usage
 
