@@ -1,11 +1,13 @@
 # @new10com/jwks-rsa
 
 [![NPM version][npm-image]][npm-url]
+[![NPM downloads][download-image]][npm-url]
 [![Release][release-image]][release-url]
 [![Install Size][install-size-image]][install-size-url]
 
 [npm-image]: https://img.shields.io/npm/v/@new10com/jwks-rsa.svg
 [npm-url]: https://www.npmjs.org/package/@new10com/jwks-rsa
+[download-image]: https://img.shields.io/npm/dm/@new10com/jwks-rsa.svg
 [release-image]: https://img.shields.io/github/release/new10com/node-jwks-rsa.svg
 [release-url]: https://github.com/new10com/node-jwks-rsa/releases/latest
 [install-size-image]: https://packagephobia.now.sh/badge?p=@new10com/jwks-rsa
